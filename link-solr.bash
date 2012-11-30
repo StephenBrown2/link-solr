@@ -11,7 +11,7 @@ fi
 # This is the path to the configuration from the apachesolr module,
 # e.g. '/var/www/d7_sites4dev/htdocs/sites/all/modules/contrib/apachesolr/solr-conf/solr-3.x'
 # FROM:
-confpath=$1
+confpath=${1%/}
 
 if [ $confpath == '.' ]; then
     confpath=$(pwd);
@@ -19,7 +19,7 @@ fi
 
 # This is the path where the solr installation lies, the actual core configuration
 # TO:
-solrpath=$2
+solrpath=${2%/}
 
 # Neither path should have a trailing slash
 
