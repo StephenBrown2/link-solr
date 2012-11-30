@@ -1,5 +1,13 @@
 #!/bin/bash
 
+if [ $# -ne 2 ]; then
+    echo "Required arguments: 2, Entered arguments: $#"
+    echo "Please enter the path to the configuration from the apachesolr module,"
+    echo " followed by the path where the solr installation lies, i.e. the actual core-name/conf."
+    echo "Neither path should have a trailing slash."
+    exit
+fi
+
 # This is the path to the configuration from the apachesolr module,
 # e.g. '/var/www/d7_sites4dev/htdocs/sites/all/modules/contrib/apachesolr/solr-conf/solr-3.x'
 # FROM:
