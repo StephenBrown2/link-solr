@@ -18,6 +18,7 @@ if [ $confpath == '.' ]; then
 fi
 
 # This is the path where the solr installation lies, the actual core configuration
+# e.g. '/usr/local/solr/drupal/multicore/d7-bhe/conf'
 # TO:
 solrpath=${2%/}
 
