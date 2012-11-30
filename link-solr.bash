@@ -23,6 +23,12 @@ solrpath=$2
 
 # Neither path should have a trailing slash
 
+if [ ! -d $confpath -o ! -d $solrpath ]; then
+    echo "Please enter a valid file path for both arguments."
+    echo "Neither path should have a trailing slash."
+    exit
+fi
+
 timestamp=$(date +%s)
 
 for file in `ls --color=never $confpath`; do
