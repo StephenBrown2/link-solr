@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $# -lt 1 ]; then
-    echo "Usage: $0 --from <confpath> --to <solrpath>"
+    echo "Usage: ${0##*/} --from <confpath> --to <solrpath>"
     echo "Please enter the path to the configuration from the apachesolr module,"
     echo " followed by the path where the solr installation lies, i.e. the actual core-name/conf."
     echo "Neither path should have a trailing slash."
@@ -54,7 +54,7 @@ if [ "$solrpath" == '.' ]; then
 fi
 
 if [ "$confpath" == "false" -o "$solrpath" == "false" ]; then
-    echo "Usage: $0 --from <confpath> --to <solrpath>"
+    echo "Usage: ${0##*/} --from <confpath> --to <solrpath>"
     echo "You must include both source and destination directories."
     exit
 elif [ ! -d "$confpath" ]; then
