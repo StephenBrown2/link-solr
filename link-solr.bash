@@ -34,11 +34,11 @@ while true ; do
     esac
 done
 
-if [ $confpath == '.' ]; then
+if [ "$confpath" == '.' ]; then
     confpath=$(pwd);
 fi
 
-if [ $solrpath == '.' ]; then
+if [ "$solrpath" == '.' ]; then
     solrpath=$(pwd);
 fi
 
