@@ -8,6 +8,17 @@ if [ $# -lt 1 ]; then
     exit
 fi
 
+promptyn() {
+    while true; do
+        read -p "$1 " yn
+        case $yn in
+            [Yy]* ) return 0;;
+            [Nn]* ) return 1;;
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
+}
+
 confpath='false';
 solrpath='false';
 
@@ -42,11 +53,25 @@ if [ "$solrpath" == '.' ]; then
     solrpath=$(pwd);
 fi
 
-if [ ! -d $confpath -o "$confpath" == "false" -o ! -d $solrpath -o "$solrpath" == "false" ]; then
+if [ "$confpath" == "false" -o "$solrpath" == "false" ]; then
     echo "Usage: $0 --from <confpath> --to <solrpath>"
-    echo "Please enter a valid directory path for both arguments."
-    echo "Neither path should have a trailing slash."
+    echo "You must include both source and destination directories."
     exit
+elif [ ! -d "$confpath" ]; then
+    echo "Hmm. $confpath doesn't exist, does it?"
+    echo "Try again, bub."
+    exit
+elif [ ! -d "$solrpath" ]; then
+    echo "Waitaminute, $solrpath isn't really there."
+    echo "Are you pulling my leg?"
+    exit
+else
+    echo "You specified the configuration path to link from as:"
+    echo $confpath
+    echo "And the solr path to link to as:"
+    echo $solrpath
+    echo
+    promptyn "Are you sure (Y/N)?" || exit
 fi
 
 timestamp=$(date +%s)
