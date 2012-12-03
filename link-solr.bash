@@ -78,8 +78,10 @@ timestamp=$(date +%s)
 
 for file in `ls --color=never $confpath`; do
   echo
-  echo "Backing up $solrpath/$file"
-  mv $solrpath/$file{,.$timestamp.bak} || exit
+  if [ -f $solrpath/$file ]; then
+      echo "Backing up $solrpath/$file"
+      mv $solrpath/$file{,.$timestamp.bak} || exit
+  fi
   echo "Linking $file"
   ln -s $confpath/$file $solrpath/
 done
